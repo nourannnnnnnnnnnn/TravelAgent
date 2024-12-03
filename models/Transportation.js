@@ -1,15 +1,19 @@
 const mongoose = require('mongoose');
 
+// Define schema for transportation data
 const transportationSchema = new mongoose.Schema({
   location: { type: String, required: true },
   type: { type: String, required: true },
   details: { type: String, required: true },
+  price: { type: Number, required: true },
+  rushHourStart: { type: String, required: true },
+  rushHourEnd: { type: String, required: true },
+  rushHourMultiplier: { type: Number, default: 1.0 },
   basePrice: { type: Number, required: true },
-  rushHourMultiplier: { type: Number, default: 1.5 }, // Multiplier for rush hour
-  rushHourStart: { type: String }, // Optional: Start time for rush hour (e.g., "08:00")
-  rushHourEnd: { type: String }, // Optional: End time for rush hour (e.g., "10:00")
+  flatRate: { type: Boolean, default: false }
 });
 
+// Create and export the model based on the schema
 const Transportation = mongoose.model('Transportation', transportationSchema);
 
 module.exports = Transportation;
